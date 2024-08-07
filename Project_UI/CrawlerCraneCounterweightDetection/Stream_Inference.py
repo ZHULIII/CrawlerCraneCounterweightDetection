@@ -8,6 +8,9 @@ from ultralytics import YOLO
 import numpy as np
 from collections import deque, Counter
 from knn import knn_classifier
+from knn import write_cache_to_log
+from datetime import datetime
+from numba import jit
 import torch
 class Stream_Inference(QThread):
     processed_image = Signal(QImage)
@@ -15,6 +18,14 @@ class Stream_Inference(QThread):
     def __init__(self,stream_path,weight_path,imgsz,conf,device,weight_sr,weight_character,imgsz_2,conf_2,device_2):
         super().__init__()
         #配重检测
+        # 添加日志文件地址
+        self.log_dir = "logs/" + datetime.now().strftime("%Y_%m_%d")+ '.txt'
+        # 添加logger cache
+        self.log_cache = []
+        self.log_line_counter = -1
+        # 跳帧预测
+        self.frame_skip =3
+
         self.stream_path = stream_path
         self.weight_path = weight_path
         self.weight_character = weight_character
@@ -28,9 +39,10 @@ class Stream_Inference(QThread):
 
         #切片字符检测
         self.sr_model_flag = False
-        self.sr_model = cv2.dnn_superres.DnnSuperResImpl_create()
-        self.sr_model.readModel(weight_sr)
-        self.sr_model.setModel("espcn", 2)
+        # self.sr_model = cv2.dnn_superres.DnnSuperResImpl_create()
+        # self.sr_model.readModel(weight_sr)
+        # self.sr_model.setModel("espcn", 2)
+        self.sr_model = None
         self.model_character = YOLO(self.weight_character)
         self.model_character_dic = {0: '10t', 1: '5.1t', 2: '5t', 3: '8.1t'}
         self.imgsz_2 = imgsz_2
@@ -46,7 +58,7 @@ class Stream_Inference(QThread):
         self.warming_info="安全"
 
         # 聚类过滤功能阈值
-        self._sample_filter_x = 0.1
+        self._sample_filter_x = 0.2
         self._sample_filter_center = (0.5, 0.55)
         self._gauss_filter = True
 
@@ -126,27 +138,37 @@ class Stream_Inference(QThread):
         except:
             return
         int_boxes = np.floor(boxes).astype(int)
-        y_max, x_max = self.result[0].orig_shape[0],  self.result[0].orig_shape[0]
+        y_max, x_max = self.result[0].orig_shape[0],  self.result[0].orig_shape[1]
         center_point_x, center_point_y = int(x_max*self._sample_filter_center[0]), int(y_max*self._sample_filter_center[1])
         keypoint_list = [(0,0), (0, y_max), (x_max, 0), (x_max, y_max), (center_point_x, center_point_y)]
         delete_index = []
         for i in range(int_boxes.shape[0]):
             # 过滤出target，需要满足两个条件，1.目标点在距离四个角点更近 2.目标中心点位于图像左右两侧阈值
             current_point = int_boxes[i]
-            if self._sample_distance_calculation(current_point, keypoint_list, x_max):
+            if not self._sample_distance_calculation(current_point, keypoint_list, x_max):
                 # 需要删除的目标框的index
                 delete_index.append(i)
         if len(delete_index) > 0:
             all_list = [i for i in range(int_boxes.shape[0])]
-            select_index = torch.tensor([sorted([item for item in all_list if item not in delete_index])],device=self.device)
-            self.result[0].boxes.cls = torch.index_select(self.result[0].boxes.cls, 0, select_index)
-            self.result[0].boxes.conf = torch.index_select(self.result[0].boxes.conf, 0, select_index)
-            self.result[0].boxes.data = torch.index_select(self.result[0].boxes.data, 0, select_index)
-            self.result[0].boxes.xywh = torch.index_select(self.result[0].boxes.xywh, 0, select_index)
-            self.result[0].boxes.xywhn = torch.index_select(self.result[0].boxes.xywhn, 0, select_index)
-            self.result[0].boxes.xyxy = torch.index_select(self.result[0].boxes.xyxy, 0, select_index)
-            self.result[0].boxes.xyxyn = torch.index_select(self.result[0].boxes.xyxyn, 0, select_index)
+            # select_index = torch.tensor([sorted([item for item in all_list if item not in delete_index])],device=self.device)
+            select_index = sorted([item for item in all_list if item not in delete_index])
+            self.result[0].boxes.data = self.result[0].boxes.data[select_index, :]
+            # self.result[0].boxes.xywh = self.result[0].boxes.xywh[select_index, :]
+            # self.result[0].boxes.xywhn = self.result[0].boxes.xywhn[select_index, :]
+            # self.result[0].boxes.xyxy = self.result[0].boxes.xyxy[select_index, :]
+            # self.result[0].boxes.xyxyn = self.result[0].boxes.xyxyn[select_index, :]
         return
+
+    @jit(nopython=True)
+    def write_cache_to_log(self):
+        try:
+            with open(self.log_dir, 'a') as log_file:
+                for log_entry in self.log_cache:
+                    log_file.write(log_entry + '\n')
+                self.log_cache = []  # 清空缓存
+        except IOError as e:
+            print(f"写入日志时发生错误：{e}")
+
 
     def run(self):
         cap = cv2.VideoCapture(self.stream_path)
@@ -165,7 +187,7 @@ class Stream_Inference(QThread):
             ret, frame = cap.read()
             if ret:
                 if count==0:
-                    print("start model predict")
+                    # print("start model predict")
                     self.result = self.model(frame,imgsz=self.imgsz,conf=self.conf,device=self.device)
                     self._sample_filter()
                     # 通过预测狂和原始图像数据得到切片图像，通过对切片图像完成超分辨率增强后输出结果 [(图像切片1，置信度1),(图像切片2， 置信度2).....]
@@ -196,8 +218,19 @@ class Stream_Inference(QThread):
 
                     self.processed_image.emit(qimage)
                     self.total_mass = self.num_weight * float(eval(self.model_character_dic[classify_number][0:-1]))
+                    self.log_line_counter += 1
+                    if self.log_line_counter % 100 == 0:
+                        input_str = datetime.now().strftime("%Y_%m_%d_%H:%M:%S") + " total weight:" + str(
+                            self.num_weight) + " total mass:" + str(self.total_mass) + " left mass:" + str(
+                            self.total_mass_L) + " right mass:" + str(self.total_mass_R)
+                        self.log_cache.append(input_str)
+                        write_cache_to_log(self.log_dir, self.log_cache)
+                        self.log_cache = []
+                    # else:
+                    #     input_str = datetime.now().strftime("%Y_%m_%d_%H:%M:%S") + " total weight:" + str(self.num_weight) + " total mass:" + str(self.total_mass) + " left mass:" + str(self.total_mass_L) + " right mass:" + str(self.total_mass_R)
+                    #     self.log_cache.append(input_str)
                     self.result_info.emit(self.num_weight,self.total_mass,self.total_mass_L,self.total_mass_R,self.warming_info)
-                count = (count+1)%3
+                count = (count+1) % self.frame_skip
             else:
                 break
             end_time = time.time()
@@ -232,7 +265,7 @@ class Stream_Inference(QThread):
             if ret:
                 if count==0:
                     self.result = self.model(frame,imgsz=self.imgsz,conf=self.conf,device=self.device)
-                    print(1)
+                    # print(1)
                     # 通过预测狂和原始图像数据得到切片图像，通过对切片图像完成超分辨率增强后输出结果 [(图像切片1，置信度1),(图像切片2， 置信度2).....]
                     slice_result = self._get_image_slice()
                     classify_number,character_pos = self._slice_classify(slice_result)

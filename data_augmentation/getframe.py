@@ -2,7 +2,7 @@ import cv2
 import os
 import argparse
 
-def extract_frames(video_path, output_dir, num_frames):
+def extract_frames(video_path, output_dir, num_frames, index):
     # 创建输出目录
     count =1
     origin_output_dir = output_dir
@@ -38,7 +38,7 @@ def extract_frames(video_path, output_dir, num_frames):
 
         # 每隔frame_interval帧保存一帧
         if frame_count % frame_interval == 0:
-            output_path = os.path.join(output_dir, f"frame_{saved_count}.jpg")
+            output_path = os.path.join(output_dir, f"frame_{index}_{saved_count}.jpg")
             cv2.imwrite(output_path, frame)
             saved_count += 1
 
@@ -56,4 +56,5 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # 提取帧
-    extract_frames(args.video_path, args.output_dir, args.num_frames)
+    # extract_frames(args.video_path, args.output_dir, args.num_frames)
+    extract_frames("C://Users//24536\Desktop\weight_data//0706//0//output.avi", "C://Users//24536//Desktop//weight_data//0706//1", 30,4)

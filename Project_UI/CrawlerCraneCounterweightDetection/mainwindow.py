@@ -12,6 +12,7 @@ from PySide6.QtGui import QPixmap
 from ui_form import Ui_MainWindow
 from Stream_Inference import Stream_Inference
 import os
+from datetime import datetime
 
 class MainWindow(QWidget):
     def __init__(self, parent=None):
@@ -25,6 +26,9 @@ class MainWindow(QWidget):
         self.PageSwitchButtonGroup.addButton(self.ui.home)
         self.PageSwitchButtonGroup.addButton(self.ui.config)
         self.PageSwitchButtonGroup.buttonClicked.connect(self.page_switch)
+
+        # 添加日志文本地址
+        self.log_dir = "logs/" + datetime.now().strftime("%Y_%m_%d") + '.txt'
 
         #流、权重文件浏览
         self.stream_path=""
@@ -46,9 +50,9 @@ class MainWindow(QWidget):
         self.stream_inference_thread=""
 
         #默认配重检测推理参数
-        self.weight_path="../../utils/best.pt"
+        self.weight_path="../../utils/models/best.pt"
         self.imgsz=640
-        self.conf=0.5
+        self.conf=0.1
         self.device="cuda:0"
 
         #默认字符检测推理参数
