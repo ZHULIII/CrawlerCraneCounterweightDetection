@@ -57,4 +57,4 @@ if __name__ == "__main__":
 
     # 提取帧
     # extract_frames(args.video_path, args.output_dir, args.num_frames)
-    extract_frames("C://Users//24536\Desktop\weight_data//0706//0//output.avi", "C://Users//24536//Desktop//weight_data//0706//1", 30,4)
+    extract_frames("../202409041625_video.avi", "S://0903_data_c//videos/0904_img", 60,10)

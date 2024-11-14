@@ -11,6 +11,7 @@ from knn import knn_classifier
 from knn import write_cache_to_log
 from datetime import datetime
 from numba import jit
+
 import torch
 class Stream_Inference(QThread):
     processed_image = Signal(QImage)
@@ -60,7 +61,11 @@ class Stream_Inference(QThread):
         # 聚类过滤功能阈值
         self._sample_filter_x = 0.2
         self._sample_filter_center = (0.5, 0.55)
-        self._gauss_filter = True
+        self._gauss_filter = False
+        # 定义一个soft_max 计算标签，用来表示是否需要过滤到相关背面
+        #
+        self.soft_flag = 2
+        self.soft_target = 0.3
 
     def stop(self):
         self.thread_stop = True
@@ -128,6 +133,31 @@ class Stream_Inference(QThread):
                 return False
         return True
 
+    def softmax(x):
+        # 为了数值稳定性，减去最大值
+        e_x = np.exp(x - np.max(x))
+        return e_x / e_x.sum()
+
+    def _soft_calculation(self):
+        # 对result里面的目标面积进行计算，然后完成soft计算，过滤掉概率小于target params的检测目标
+        if self.soft_flag < 2:
+            return
+        try:
+            boxes = self.result[0].boxes.cpu().numpy().data
+        # 如果没有检测出识别框，无法取得boxes数据
+        except:
+            return
+        # 只需要获取前面四列
+        tmp_boxes = boxes[:,0:-2]
+        area_boxes = (tmp_boxes[:, 0] - tmp_boxes[:, 2]) * (tmp_boxes[:, 1] - tmp_boxes[:, 3])
+        # 尝试使用softmax解决问题，压缩后的结果无法在数值上进行有效区分，故采用数值大小比较方法
+        target_filter = area_boxes.max() * self.soft_target
+        delete_index = list(np.where(area_boxes < target_filter)[0])
+        select_index = list(np.where(area_boxes >= target_filter)[0])
+        if len(delete_index) > 0:
+            self.result[0].boxes.data = self.result[0].boxes.data[select_index, :]
+        return
+
 
     def _sample_filter(self):
         if not self._gauss_filter:
@@ -190,6 +220,7 @@ class Stream_Inference(QThread):
                     # print("start model predict")
                     self.result = self.model(frame,imgsz=self.imgsz,conf=self.conf,device=self.device)
                     self._sample_filter()
+                    self._soft_calculation()
                     # 通过预测狂和原始图像数据得到切片图像，通过对切片图像完成超分辨率增强后输出结果 [(图像切片1，置信度1),(图像切片2， 置信度2).....]
                     slice_result = self._get_image_slice()
                     classify_number,character_pos = self._slice_classify(slice_result)
