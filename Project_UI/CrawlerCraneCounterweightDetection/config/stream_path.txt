@@ -1,10 +1,2 @@
-C:/Users/24536/Desktop/weight_data/0702/0830.mp4
-C:/Users/24536/Desktop/weight_data/0702/0830_2.mp4
-C:/Users/24536/Desktop/weight_data/0702/4.mp4
-C:/Users/24536/Desktop/weight_data/0624/3.avi
-C:/Users/24536/Desktop/weight_data/0624/1.avi
-C:/Users/24536/Desktop/weight_data/0619_xuanzhuan.mp4
-C:/Users/24536/Desktop/weight_data/0706/0/71682ed2a2ce6706ea7eaeec9c50008f.mp4
-C:/Users/24536/Desktop/weight_data/0706/0/output.avi
-C:/Users/24536/Desktop/weight_data/0705/c976a3bd40bcb7cc5eb2319f4690e648.mp4
-C:/Users/24536/Desktop/weight_data/0703/1.mp4
+/mnt/s/NLP/Image_Net/ZoomLion-WeightDetection/CrawlerCraneCounterweightDetection/API/models/test.avi
+

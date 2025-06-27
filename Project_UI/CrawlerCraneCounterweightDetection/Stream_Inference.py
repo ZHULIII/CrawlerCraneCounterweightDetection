@@ -199,8 +199,39 @@ class Stream_Inference(QThread):
         except IOError as e:
             print(f"写入日志时发生错误：{e}")
 
+    def process_weight_number(self,weight_number_dic, weight_left_number, weight_right_number,weight_flag=False):
+        if weight_flag==False:
+            return weight_left_number, weight_right_number
+        if len(weight_number_dic['left']) > 10:
+            weight_number_dic['left'] = weight_number_dic['left'][-10:]
+        if len(weight_number_dic['right']) > 10:
+            weight_number_dic['right'] = weight_number_dic['right'][-10:]
+
+        if len(weight_number_dic['left']) <= 10 or len(weight_number_dic['right']) <= 10:
+            weight_number_dic['left'].append(weight_left_number)
+            weight_number_dic['right'].append(weight_right_number)
+            weight_number_dic['left_ave'] = np.mean(weight_number_dic['left'])
+            weight_number_dic['right_ave'] = np.mean(weight_number_dic['right'])
+
+        if len(weight_number_dic['left']) < 2 or len(weight_number_dic['right']) < 2:
+            return weight_left_number, weight_right_number
+        else:
+            if weight_left_number >= (weight_number_dic['left'][-2] - 2) and weight_left_number <= (
+                    weight_number_dic['left'][-2] + 2):
+                result_left = weight_left_number
+            else:
+                result_left = round(weight_number_dic['left_ave'])
+
+            if weight_right_number >= (weight_number_dic['right'][-2] - 2) and weight_right_number <= (
+                    weight_number_dic['right'][-2] + 2):
+                result_right = weight_right_number
+            else:
+                result_right = round(weight_number_dic['right_ave'])
+        return result_left, result_right
 
     def run(self):
+        self.weight_number_dic = {'left': [], 'right': [], 'left_ave': 0.0,
+                         'right_ave': 0.0}
         cap = cv2.VideoCapture(self.stream_path)
         #未捕获video
         if not cap.isOpened():
@@ -242,6 +273,7 @@ class Stream_Inference(QThread):
                     boxes_number = self.result[0].boxes.cpu().numpy().data
                     int_boxes_number = np.floor(boxes_number).astype(int)
                     self.weight_left_number, self.weight_right_number = knn_classifier(int_boxes_number)
+                    self.weight_left_number, self.weight_right_number = self.process_weight_number(self.weight_number_dic, self.weight_left_number, self.weight_right_number,)
                     self.total_mass_L = self.weight_left_number * float(eval(self.model_character_dic[classify_number][0:-1]))
                     self.total_mass_R = self.weight_right_number * float(eval(self.model_character_dic[classify_number][0:-1]))
                     # 计算完之后对左右数量置为0，避免带入缓存误差
