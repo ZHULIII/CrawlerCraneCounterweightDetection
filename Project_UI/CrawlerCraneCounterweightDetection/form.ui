@@ -2022,9 +2022,17 @@ border-radius:5px
                   <height>60</height>
                  </size>
                 </property>
+                <property name="font">
+                 <font>
+                  <family>Microsoft YaHei UI</family>
+                  <pointsize>12</pointsize>
+                  <italic>false</italic>
+                  <bold>false</bold>
+                 </font>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">color: rgb(151, 190, 21);
-font: 14pt &quot;Microsoft YaHei UI&quot;;</string>
+font: 12pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="title">
                  <string>配重总数量</string>
@@ -2083,7 +2091,7 @@ font: 16pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">color: rgb(151, 190, 21);
-font: 14pt &quot;Microsoft YaHei UI&quot;;</string>
+font: 12pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="title">
                  <string>配重总重量(t)</string>
@@ -2142,7 +2150,7 @@ font: 16pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">color: rgb(151, 190, 21);
-font: 14pt &quot;Microsoft YaHei UI&quot;;</string>
+font: 12pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="title">
                  <string>左侧总重量(t)</string>
@@ -2201,7 +2209,7 @@ font: 16pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">color: rgb(151, 190, 21);
-font: 14pt &quot;Microsoft YaHei UI&quot;;</string>
+font: 12pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="title">
                  <string>右侧总重量(t)</string>
@@ -2273,7 +2281,7 @@ font: 16pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="styleSheet">
                  <string notr="true">color: rgb(151, 190, 21);
-font: 16pt &quot;Microsoft YaHei UI&quot;;</string>
+font: 14pt &quot;Microsoft YaHei UI&quot;;</string>
                 </property>
                 <property name="title">
                  <string>预警信息</string>

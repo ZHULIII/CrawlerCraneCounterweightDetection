@@ -7,7 +7,6 @@
 # sudo apt install libegl1-mesa
 import sys
 from PySide6.QtWidgets import QApplication, QWidget,QFileDialog,QButtonGroup
-from PySide6.QtCore import QDir,Qt
 from PySide6.QtGui import QPixmap
 from ui_form import Ui_MainWindow
 from Stream_Inference import Stream_Inference

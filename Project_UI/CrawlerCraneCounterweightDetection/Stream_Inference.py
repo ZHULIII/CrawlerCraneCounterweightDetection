@@ -11,7 +11,14 @@ from knn import knn_classifier
 from knn import write_cache_to_log
 from datetime import datetime
 from numba import jit
-
+def load_rtsp_url_simple(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        # 读第一行，去掉首尾空白
+        line = f.readline().strip()
+    # 按第一次出现的 = 分拆
+    _, val = line.split('=', 1)
+    # 去掉可能的引号
+    return val.strip().strip('"').strip("'")
 import torch
 class Stream_Inference(QThread):
     processed_image = Signal(QImage)
@@ -25,7 +32,7 @@ class Stream_Inference(QThread):
         self.log_cache = []
         self.log_line_counter = -1
         # 跳帧预测
-        self.frame_skip =3
+        self.frame_skip = 3
 
         self.stream_path = stream_path
         self.weight_path = weight_path
@@ -139,6 +146,7 @@ class Stream_Inference(QThread):
         return e_x / e_x.sum()
 
     def _soft_calculation(self):
+        return
         # 对result里面的目标面积进行计算，然后完成soft计算，过滤掉概率小于target params的检测目标
         if self.soft_flag < 2:
             return
@@ -151,7 +159,10 @@ class Stream_Inference(QThread):
         tmp_boxes = boxes[:,0:-2]
         area_boxes = (tmp_boxes[:, 0] - tmp_boxes[:, 2]) * (tmp_boxes[:, 1] - tmp_boxes[:, 3])
         # 尝试使用softmax解决问题，压缩后的结果无法在数值上进行有效区分，故采用数值大小比较方法
-        target_filter = area_boxes.max() * self.soft_target
+        if area_boxes.size() == 0:
+            target_filter = 0.0
+        else:
+            target_filter = area_boxes.max() * self.soft_target
         delete_index = list(np.where(area_boxes < target_filter)[0])
         select_index = list(np.where(area_boxes >= target_filter)[0])
         if len(delete_index) > 0:
@@ -229,10 +240,162 @@ class Stream_Inference(QThread):
                 result_right = round(weight_number_dic['right_ave'])
         return result_left, result_right
 
-    def run(self):
+    def run_1016(self):
+        weight_flag_video = "none"
+        import os
+        # 初始化权重统计字典
+        self.weight_number_dic = {'left': [], 'right': [], 'left_ave': 0.0, 'right_ave': 0.0}
+
+        # 打开 RTSP 流
+        cap = cv2.VideoCapture(load_rtsp_url_simple('rtsp_stream.txt'))
+        #打开 本地视频
+        #cap = cv2.VideoCapture(self.stream_path)
+
+
+        if not cap.isOpened():
+            # 视频流打开失败
+            self.num_weight = self.total_mass = self.total_mass_L = self.total_mass_R = 0
+            self.warming_info = "视频流中断，请检查网络相机连接情况"
+            self.result_info.emit(self.num_weight,
+                                  self.total_mass,
+                                  self.total_mass_L,
+                                  self.total_mass_R,
+                                  self.warming_info)
+            return
+
+        # 原始帧率与定时控制
+        fps = cap.get(cv2.CAP_PROP_FPS) or 25.0
+        delta_time = 1000.0 / fps
+
+        # 每隔 frame_skip 帧做一次采样
+        skip = self.frame_skip
+        # 用于分段保存视频：15 分钟一段
+        #segment_duration = 15 * 60  # 秒
+        segment_duration = 30
+        segment_start = time.time()
+        segment_idx = 0
+
+        # 输出目录和 VideoWriter 参数
+        save_dir = os.path.join('', "videos")
+        os.makedirs(save_dir, exist_ok=True)
+        fourcc = cv2.VideoWriter_fourcc(*'mp4v')
+        sampled_fps = fps / skip
+
+        out = None
+        count = 0
+
+        while cap.isOpened() and not self.thread_stop:
+            t0 = time.time()
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            # 如果还没有打开 VideoWriter，就新建一个
+            if out is None:
+                h, w = frame.shape[:2]
+                ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+                filename = f"segment_{segment_idx:02d}_{ts}_{weight_flag_video}.mp4"
+                path = os.path.join(save_dir, filename)
+                out = cv2.VideoWriter(path, fourcc, sampled_fps, (w, h))
+                print(f"[Video] 开始新分段: {filename}")
+
+            # 只在采样帧上做处理、保存
+            if count == 0:
+                # —— 原有的模型推理、结果绘制部分 —— #
+                self.result = self.model(frame, imgsz=self.imgsz, conf=self.conf, device=self.device)
+                self._sample_filter()
+                self._soft_calculation()
+                slice_result = self._get_image_slice()
+                classify_number, character_pos = self._slice_classify(slice_result)
+
+                annotated_image = self.result[0].plot(
+                    conf=True, line_width=2, font="Arial.ttf", pil=False,
+                    labels=self.label, boxes=self.box, masks=False, probs=True,
+                    show=False
+                )
+                for box in character_pos:
+                    cv2.rectangle(annotated_image, (box[0], box[1]), (box[2], box[3]),
+                                  color=(0, 0, 255), thickness=2)
+
+                rgb_image = cv2.cvtColor(annotated_image, cv2.COLOR_BGR2RGB)
+                h2, w2, ch = rgb_image.shape
+                bytes_per_line = ch * w2
+                qimage = QImage(rgb_image.data, w2, h2, bytes_per_line, QImage.Format_RGB888)
+
+                # 统计配重块数
+                self.num_weight_queue.append(len(self.result[0].boxes))
+                counter = Counter(self.num_weight_queue)
+                self.num_weight = counter.most_common(1)[0][0]
+
+                # 计算左右配重数与质量
+                boxes_number = self.result[0].boxes.cpu().numpy().data
+                int_boxes = np.floor(boxes_number).astype(int)
+                left_n, right_n = knn_classifier(int_boxes)
+                left_n, right_n = self.process_weight_number(
+                    self.weight_number_dic, left_n, right_n
+                )
+                self.total_mass_L = left_n * float(eval(self.model_character_dic[classify_number][:-1]))
+                self.total_mass_R = right_n * float(eval(self.model_character_dic[classify_number][:-1]))
+                self.weight_left_number = self.weight_right_number = 0
+
+                # 发射处理后图像与结果
+                self.processed_image.emit(qimage)
+                self.total_mass = self.num_weight * float(eval(self.model_character_dic[classify_number][:-1]))
+
+                # 日志缓存
+                self.log_line_counter += 1
+                if self.log_line_counter % 100 == 0:
+                    log_str = (datetime.now().strftime("%Y_%m_%d_%H:%M:%S")
+                               + f" total weight:{self.num_weight}"
+                               + f" total mass:{self.total_mass}"
+                               + f" left mass:{self.total_mass_L}"
+                               + f" right mass:{self.total_mass_R}")
+                    self.log_cache.append(log_str)
+                    write_cache_to_log(self.log_dir, self.log_cache)
+                    self.log_cache = []
+
+                self.result_info.emit(
+                    self.num_weight,
+                    self.total_mass,
+                    self.total_mass_L,
+                    self.total_mass_R,
+                    self.warming_info
+                )
+                if self.num_weight > 0.0:
+                    weight_flag_video = "true"
+                else:
+                    weight_flag_video = "none"
+
+                # —— 视频写入 —— #
+                out.write(frame)
+
+            # 更新计数
+            count = (count + 1) % skip
+
+            # 检查是否超过 15 分钟，切换分段
+            if time.time() - segment_start >= segment_duration:
+                out.release()
+                print(f"[Video] 分段 {segment_idx:02d} 完成")
+                segment_idx += 1
+                segment_start = time.time()
+                out = None
+
+            # 控制到达原始帧率
+            t1 = time.time()
+            elapsed_ms = (t1 - t0) * 1000
+            if elapsed_ms < delta_time:
+                cv2.waitKey(int(delta_time - elapsed_ms))
+
+        # 循环结束或中断，释放资源
+        if out is not None:
+            out.release()
+        cap.release()
+
+    def run_pre(self):
         self.weight_number_dic = {'left': [], 'right': [], 'left_ave': 0.0,
                          'right_ave': 0.0}
-        cap = cv2.VideoCapture(self.stream_path)
+        #cap = cv2.VideoCapture(self.stream_path)
+        cap = cv2.VideoCapture(load_rtsp_url_simple('rtsp_stream.txt'))
         #未捕获video
         if not cap.isOpened():
             self.num_weight,self.total_mass,self.total_mass_L,self.total_mass_R,self.warming_info = 0,0,0,0,"视频流中断，请检查网络相机连接情况"
@@ -298,7 +461,7 @@ class Stream_Inference(QThread):
                 break
             end_time = time.time()
             processing_time = (end_time-start_time)*1000
-            print(processing_time)
+            #print(processing_time)
             if processing_time>delta_time:
                 continue
             else:
@@ -308,9 +471,9 @@ class Stream_Inference(QThread):
             self.warming_info = "视频流中断，请检查网络相机连接情况"
             self.num_weight,self.total_mass,self.total_mass_L,self.total_mass_R = 0,0,0,0
             self.result_info.emit(self.num_weight,self.total_mass,self.total_mass_L,self.total_mass_R,self.warming_info)
-        print((time.time()-time1)*1000)
+        #print((time.time()-time1)*1000)
         cap.release()
-    def run_function(self):
+    def run(self):
         cap = cv2.VideoCapture(self.stream_path)
         #未捕获video
         if not cap.isOpened():

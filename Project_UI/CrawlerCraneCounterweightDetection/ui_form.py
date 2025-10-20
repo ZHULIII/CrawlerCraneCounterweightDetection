@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'form.ui'
 ##
-## Created by: Qt User Interface Compiler version 6.6.0
+## Created by: Qt User Interface Compiler version 6.7.1
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -40,25 +40,41 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout.addWidget(self.label)
 
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout.addItem(self.horizontalSpacer)
 
-        self.config = QPushButton(self.verticalLayoutWidget)
-        self.config.setObjectName(u"config")
-        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        self.config_2 = QPushButton(self.verticalLayoutWidget)
+        self.config_2.setObjectName(u"config_2")
+        sizePolicy = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.config_2.sizePolicy().hasHeightForWidth())
+        self.config_2.setSizePolicy(sizePolicy)
+        self.config_2.setMinimumSize(QSize(80, 80))
+        self.config_2.setMaximumSize(QSize(80, 80))
+        self.config_2.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
+        self.config_2.setStyleSheet(u"background-color:  transparent;\n"
+"border:none;")
+        icon = QIcon()
+        icon.addFile(u"font/\u5f55\u50cf.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.config_2.setIcon(icon)
+        self.config_2.setIconSize(QSize(80, 80))
+
+        self.horizontalLayout.addWidget(self.config_2)
+
+        self.config = QPushButton(self.verticalLayoutWidget)
+        self.config.setObjectName(u"config")
         sizePolicy.setHeightForWidth(self.config.sizePolicy().hasHeightForWidth())
         self.config.setSizePolicy(sizePolicy)
         self.config.setMinimumSize(QSize(80, 80))
         self.config.setMaximumSize(QSize(80, 80))
-        self.config.setLayoutDirection(Qt.LeftToRight)
+        self.config.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.config.setStyleSheet(u"background-color:  transparent;\n"
 "border:none;")
-        icon = QIcon()
-        icon.addFile(u"font/\u8bbe\u7f6e.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.config.setIcon(icon)
+        icon1 = QIcon()
+        icon1.addFile(u"font/\u8bbe\u7f6e.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.config.setIcon(icon1)
         self.config.setIconSize(QSize(80, 80))
 
         self.horizontalLayout.addWidget(self.config)
@@ -69,12 +85,12 @@ class Ui_MainWindow(object):
         self.home.setSizePolicy(sizePolicy)
         self.home.setMinimumSize(QSize(80, 80))
         self.home.setMaximumSize(QSize(80, 80))
-        self.home.setLayoutDirection(Qt.LeftToRight)
+        self.home.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.home.setStyleSheet(u"background-color:  transparent;\n"
 "border:none;")
-        icon1 = QIcon()
-        icon1.addFile(u"font/\u4e3b\u9875.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.home.setIcon(icon1)
+        icon2 = QIcon()
+        icon2.addFile(u"font/\u4e3b\u9875.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.home.setIcon(icon2)
         self.home.setIconSize(QSize(60, 60))
 
         self.horizontalLayout.addWidget(self.home)
@@ -85,17 +101,17 @@ class Ui_MainWindow(object):
         self.exit.setSizePolicy(sizePolicy)
         self.exit.setMinimumSize(QSize(80, 80))
         self.exit.setMaximumSize(QSize(80, 80))
-        self.exit.setLayoutDirection(Qt.LeftToRight)
+        self.exit.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.exit.setStyleSheet(u"background-color:  transparent;\n"
 "border:none;")
-        icon2 = QIcon()
+        icon3 = QIcon()
         iconThemeName = u"face-laugh"
         if QIcon.hasThemeIcon(iconThemeName):
-            icon2 = QIcon.fromTheme(iconThemeName)
+            icon3 = QIcon.fromTheme(iconThemeName)
         else:
-            icon2.addFile(u"font/\u9000\u51fa.png", QSize(), QIcon.Normal, QIcon.Off)
+            icon3.addFile(u"font/\u9000\u51fa.png", QSize(), QIcon.Normal, QIcon.Off)
 
-        self.exit.setIcon(icon2)
+        self.exit.setIcon(icon3)
         self.exit.setIconSize(QSize(70, 70))
 
         self.horizontalLayout.addWidget(self.exit)
@@ -107,7 +123,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.stackedWidget = QStackedWidget(self.verticalLayoutWidget)
         self.stackedWidget.setObjectName(u"stackedWidget")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Preferred)
+        sizePolicy1 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
         sizePolicy1.setHeightForWidth(self.stackedWidget.sizePolicy().hasHeightForWidth())
@@ -137,7 +153,7 @@ class Ui_MainWindow(object):
         self.stream_file_list.setMouseTracking(False)
         self.stream_file_list.setTabletTracking(False)
         self.stream_file_list.setAcceptDrops(False)
-        self.stream_file_list.setLayoutDirection(Qt.LeftToRight)
+        self.stream_file_list.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.stream_file_list.setAutoFillBackground(False)
         self.stream_file_list.setStyleSheet(u"QComboBox::down-arrow\n"
 "{\n"
@@ -189,17 +205,17 @@ class Ui_MainWindow(object):
         self.open_stream_file.setSizePolicy(sizePolicy)
         self.open_stream_file.setMinimumSize(QSize(60, 60))
         self.open_stream_file.setMaximumSize(QSize(60, 60))
-        self.open_stream_file.setLayoutDirection(Qt.LeftToRight)
+        self.open_stream_file.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.open_stream_file.setStyleSheet(u"background-color:  transparent;\n"
 "border:none;")
-        icon3 = QIcon()
+        icon4 = QIcon()
         iconThemeName = u"face-laugh"
         if QIcon.hasThemeIcon(iconThemeName):
-            icon3 = QIcon.fromTheme(iconThemeName)
+            icon4 = QIcon.fromTheme(iconThemeName)
         else:
-            icon3.addFile(u"font/\u641c\u7d22.png", QSize(), QIcon.Normal, QIcon.Off)
+            icon4.addFile(u"font/\u641c\u7d22.png", QSize(), QIcon.Normal, QIcon.Off)
 
-        self.open_stream_file.setIcon(icon3)
+        self.open_stream_file.setIcon(icon4)
         self.open_stream_file.setIconSize(QSize(60, 60))
         self.groupBox_4 = QGroupBox(self.page_5)
         self.groupBox_4.setObjectName(u"groupBox_4")
@@ -219,7 +235,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_7 = QVBoxLayout(self.verticalLayoutWidget_4)
         self.verticalLayout_7.setObjectName(u"verticalLayout_7")
         self.verticalLayout_7.setContentsMargins(0, 0, 0, 0)
-        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_7 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_7.addItem(self.verticalSpacer_7)
 
@@ -232,7 +248,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_12.addWidget(self.label_2)
 
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_12.addItem(self.horizontalSpacer_11)
 
@@ -241,7 +257,7 @@ class Ui_MainWindow(object):
         self.weight_file_list.addItem("")
         self.weight_file_list.addItem("")
         self.weight_file_list.setObjectName(u"weight_file_list")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Fixed, QSizePolicy.Fixed)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
         sizePolicy2.setHorizontalStretch(0)
         sizePolicy2.setVerticalStretch(0)
         sizePolicy2.setHeightForWidth(self.weight_file_list.sizePolicy().hasHeightForWidth())
@@ -251,7 +267,7 @@ class Ui_MainWindow(object):
         self.weight_file_list.setMouseTracking(False)
         self.weight_file_list.setTabletTracking(False)
         self.weight_file_list.setAcceptDrops(False)
-        self.weight_file_list.setLayoutDirection(Qt.LeftToRight)
+        self.weight_file_list.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.weight_file_list.setAutoFillBackground(False)
         self.weight_file_list.setStyleSheet(u"QComboBox{\n"
 "	color: rgb(255, 255, 255);\n"
@@ -302,10 +318,10 @@ class Ui_MainWindow(object):
         self.open_weight_file.setSizePolicy(sizePolicy)
         self.open_weight_file.setMinimumSize(QSize(40, 40))
         self.open_weight_file.setMaximumSize(QSize(40, 40))
-        self.open_weight_file.setLayoutDirection(Qt.LeftToRight)
+        self.open_weight_file.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.open_weight_file.setStyleSheet(u"background-color:  transparent;\n"
 "border:none;")
-        self.open_weight_file.setIcon(icon3)
+        self.open_weight_file.setIcon(icon4)
         self.open_weight_file.setIconSize(QSize(40, 40))
 
         self.horizontalLayout_12.addWidget(self.open_weight_file)
@@ -313,7 +329,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addLayout(self.horizontalLayout_12)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_7.addItem(self.verticalSpacer_4)
 
@@ -328,7 +344,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_13.addWidget(self.label_6)
 
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_13.addItem(self.horizontalSpacer_8)
 
@@ -391,7 +407,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_10)
 
@@ -453,14 +469,14 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_13.addLayout(self.horizontalLayout_4)
 
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_13.addItem(self.horizontalSpacer_9)
 
 
         self.verticalLayout_7.addLayout(self.horizontalLayout_13)
 
-        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_5 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_7.addItem(self.verticalSpacer_5)
 
@@ -475,32 +491,32 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_14.addWidget(self.label_7)
 
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_14.addItem(self.horizontalSpacer_6)
 
         self.imgsz = QLineEdit(self.verticalLayoutWidget_4)
         self.imgsz.setObjectName(u"imgsz")
         self.imgsz.setMaximumSize(QSize(50, 16777215))
-        self.imgsz.setLayoutDirection(Qt.LeftToRight)
+        self.imgsz.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.imgsz.setStyleSheet(u"border:2px solid gray;\n"
 "font: 12pt \"Microsoft YaHei UI\";\n"
 "border-radius:4px;\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: transparent;\n"
 "")
-        self.imgsz.setAlignment(Qt.AlignCenter)
+        self.imgsz.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_14.addWidget(self.imgsz)
 
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_14.addItem(self.horizontalSpacer_7)
 
 
         self.verticalLayout_7.addLayout(self.horizontalLayout_14)
 
-        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_6 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_7.addItem(self.verticalSpacer_6)
 
@@ -554,7 +570,7 @@ class Ui_MainWindow(object):
         self.conf.setMaximum(100)
         self.conf.setSingleStep(1)
         self.conf.setValue(70)
-        self.conf.setOrientation(Qt.Horizontal)
+        self.conf.setOrientation(Qt.Orientation.Horizontal)
 
         self.horizontalLayout_15.addWidget(self.conf)
 
@@ -568,7 +584,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_7.addLayout(self.horizontalLayout_15)
 
-        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_8 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_7.addItem(self.verticalSpacer_8)
 
@@ -578,7 +594,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_10 = QHBoxLayout(self.horizontalLayoutWidget_2)
         self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
         self.horizontalLayout_10.setContentsMargins(0, 0, 0, 0)
-        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_5 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_10.addItem(self.horizontalSpacer_5)
 
@@ -598,9 +614,9 @@ class Ui_MainWindow(object):
         self.stream_import.setMaximumSize(QSize(60, 60))
         self.stream_import.setStyleSheet(u"background-color:  transparent;\n"
 "border:none;")
-        icon4 = QIcon()
-        icon4.addFile(u"font/\u8fdb\u5165.png", QSize(), QIcon.Normal, QIcon.Off)
-        self.stream_import.setIcon(icon4)
+        icon5 = QIcon()
+        icon5.addFile(u"font/\u8fdb\u5165.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.stream_import.setIcon(icon5)
         self.stream_import.setIconSize(QSize(60, 60))
 
         self.horizontalLayout_10.addWidget(self.stream_import)
@@ -623,7 +639,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_8 = QVBoxLayout(self.verticalLayoutWidget_5)
         self.verticalLayout_8.setObjectName(u"verticalLayout_8")
         self.verticalLayout_8.setContentsMargins(0, 0, 0, 0)
-        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_9 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_8.addItem(self.verticalSpacer_9)
 
@@ -636,7 +652,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.label_9)
 
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_12)
 
@@ -650,7 +666,7 @@ class Ui_MainWindow(object):
         self.weight_file_list_2.setMouseTracking(False)
         self.weight_file_list_2.setTabletTracking(False)
         self.weight_file_list_2.setAcceptDrops(False)
-        self.weight_file_list_2.setLayoutDirection(Qt.LeftToRight)
+        self.weight_file_list_2.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.weight_file_list_2.setAutoFillBackground(False)
         self.weight_file_list_2.setStyleSheet(u"QComboBox{\n"
 "	color: rgb(255, 255, 255);\n"
@@ -701,10 +717,10 @@ class Ui_MainWindow(object):
         self.open_weight_file_2.setSizePolicy(sizePolicy)
         self.open_weight_file_2.setMinimumSize(QSize(40, 40))
         self.open_weight_file_2.setMaximumSize(QSize(40, 40))
-        self.open_weight_file_2.setLayoutDirection(Qt.LeftToRight)
+        self.open_weight_file_2.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.open_weight_file_2.setStyleSheet(u"background-color:  transparent;\n"
 "border:none;")
-        self.open_weight_file_2.setIcon(icon3)
+        self.open_weight_file_2.setIcon(icon4)
         self.open_weight_file_2.setIconSize(QSize(40, 40))
 
         self.horizontalLayout_16.addWidget(self.open_weight_file_2)
@@ -712,7 +728,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_16)
 
-        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_10 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_8.addItem(self.verticalSpacer_10)
 
@@ -727,7 +743,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_17.addWidget(self.label_11)
 
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_17.addItem(self.horizontalSpacer_13)
 
@@ -790,7 +806,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11 = QHBoxLayout()
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_11.addItem(self.horizontalSpacer_14)
 
@@ -852,14 +868,14 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_17.addWidget(self.CPU_2)
 
-        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_17.addItem(self.horizontalSpacer_15)
 
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_17)
 
-        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_11 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_8.addItem(self.verticalSpacer_11)
 
@@ -874,32 +890,32 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.label_13)
 
-        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_18.addItem(self.horizontalSpacer_16)
 
         self.imgsz_2 = QLineEdit(self.verticalLayoutWidget_5)
         self.imgsz_2.setObjectName(u"imgsz_2")
         self.imgsz_2.setMaximumSize(QSize(50, 16777215))
-        self.imgsz_2.setLayoutDirection(Qt.LeftToRight)
+        self.imgsz_2.setLayoutDirection(Qt.LayoutDirection.LeftToRight)
         self.imgsz_2.setStyleSheet(u"border:2px solid gray;\n"
 "font: 12pt \"Microsoft YaHei UI\";\n"
 "border-radius:4px;\n"
 "color: rgb(255, 255, 255);\n"
 "background-color: transparent;\n"
 "")
-        self.imgsz_2.setAlignment(Qt.AlignCenter)
+        self.imgsz_2.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_18.addWidget(self.imgsz_2)
 
-        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_18.addItem(self.horizontalSpacer_17)
 
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_18)
 
-        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_12 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_8.addItem(self.verticalSpacer_12)
 
@@ -953,7 +969,7 @@ class Ui_MainWindow(object):
         self.conf_2.setMaximum(100)
         self.conf_2.setSingleStep(1)
         self.conf_2.setValue(70)
-        self.conf_2.setOrientation(Qt.Horizontal)
+        self.conf_2.setOrientation(Qt.Orientation.Horizontal)
 
         self.horizontalLayout_19.addWidget(self.conf_2)
 
@@ -967,7 +983,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_8.addLayout(self.horizontalLayout_19)
 
-        self.verticalSpacer_13 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_13 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_8.addItem(self.verticalSpacer_13)
 
@@ -993,7 +1009,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.gridLayout = QGridLayout()
         self.gridLayout.setObjectName(u"gridLayout")
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.gridLayout.addItem(self.horizontalSpacer_2, 1, 0, 1, 1)
 
@@ -1004,19 +1020,19 @@ class Ui_MainWindow(object):
         self.annotated_image.setMinimumSize(QSize(960, 540))
         self.annotated_image.setStyleSheet(u"color: rgb(115, 115, 115);\n"
 "font: 700 14pt \"Microsoft YaHei UI\";")
-        self.annotated_image.setAlignment(Qt.AlignCenter)
+        self.annotated_image.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.gridLayout.addWidget(self.annotated_image, 1, 1, 1, 1)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.gridLayout.addItem(self.horizontalSpacer_3, 1, 2, 1, 1)
 
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.gridLayout.addItem(self.verticalSpacer, 0, 1, 1, 1)
 
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.gridLayout.addItem(self.verticalSpacer_2, 2, 1, 1, 1)
 
@@ -1026,7 +1042,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(-1, -1, 10, -1)
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
 
@@ -1109,20 +1125,26 @@ class Ui_MainWindow(object):
         self.verticalLayout_11.setContentsMargins(10, -1, 10, 10)
         self.groupBox_10 = QGroupBox(self.verticalLayoutWidget_2)
         self.groupBox_10.setObjectName(u"groupBox_10")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Policy.Preferred, QSizePolicy.Policy.Fixed)
         sizePolicy3.setHorizontalStretch(0)
         sizePolicy3.setVerticalStretch(0)
         sizePolicy3.setHeightForWidth(self.groupBox_10.sizePolicy().hasHeightForWidth())
         self.groupBox_10.setSizePolicy(sizePolicy3)
         self.groupBox_10.setMinimumSize(QSize(0, 60))
+        font = QFont()
+        font.setFamilies([u"Microsoft YaHei UI"])
+        font.setPointSize(12)
+        font.setBold(False)
+        font.setItalic(False)
+        self.groupBox_10.setFont(font)
         self.groupBox_10.setStyleSheet(u"color: rgb(151, 190, 21);\n"
-"font: 14pt \"Microsoft YaHei UI\";")
+"font: 12pt \"Microsoft YaHei UI\";")
         self.num_weight = QLabel(self.groupBox_10)
         self.num_weight.setObjectName(u"num_weight")
         self.num_weight.setGeometry(QRect(10, 20, 171, 31))
         self.num_weight.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "font: 16pt \"Microsoft YaHei UI\";")
-        self.num_weight.setAlignment(Qt.AlignCenter)
+        self.num_weight.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.num_weight.setWordWrap(True)
 
         self.verticalLayout_11.addWidget(self.groupBox_10)
@@ -1139,13 +1161,13 @@ class Ui_MainWindow(object):
         self.groupBox_9.setSizePolicy(sizePolicy3)
         self.groupBox_9.setMinimumSize(QSize(0, 60))
         self.groupBox_9.setStyleSheet(u"color: rgb(151, 190, 21);\n"
-"font: 14pt \"Microsoft YaHei UI\";")
+"font: 12pt \"Microsoft YaHei UI\";")
         self.total_mass = QLabel(self.groupBox_9)
         self.total_mass.setObjectName(u"total_mass")
         self.total_mass.setGeometry(QRect(10, 20, 171, 31))
         self.total_mass.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "font: 16pt \"Microsoft YaHei UI\";")
-        self.total_mass.setAlignment(Qt.AlignCenter)
+        self.total_mass.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.total_mass.setWordWrap(True)
 
         self.verticalLayout_10.addWidget(self.groupBox_9)
@@ -1162,13 +1184,13 @@ class Ui_MainWindow(object):
         self.groupBox_8.setSizePolicy(sizePolicy3)
         self.groupBox_8.setMinimumSize(QSize(0, 60))
         self.groupBox_8.setStyleSheet(u"color: rgb(151, 190, 21);\n"
-"font: 14pt \"Microsoft YaHei UI\";")
+"font: 12pt \"Microsoft YaHei UI\";")
         self.total_mass_L = QLabel(self.groupBox_8)
         self.total_mass_L.setObjectName(u"total_mass_L")
         self.total_mass_L.setGeometry(QRect(10, 20, 171, 31))
         self.total_mass_L.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "font: 16pt \"Microsoft YaHei UI\";")
-        self.total_mass_L.setAlignment(Qt.AlignCenter)
+        self.total_mass_L.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.total_mass_L.setWordWrap(True)
 
         self.verticalLayout_9.addWidget(self.groupBox_8)
@@ -1185,13 +1207,13 @@ class Ui_MainWindow(object):
         self.groupBox_7.setSizePolicy(sizePolicy3)
         self.groupBox_7.setMinimumSize(QSize(0, 60))
         self.groupBox_7.setStyleSheet(u"color: rgb(151, 190, 21);\n"
-"font: 14pt \"Microsoft YaHei UI\";")
+"font: 12pt \"Microsoft YaHei UI\";")
         self.total_mass_R = QLabel(self.groupBox_7)
         self.total_mass_R.setObjectName(u"total_mass_R")
         self.total_mass_R.setGeometry(QRect(10, 20, 171, 31))
         self.total_mass_R.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "font: 16pt \"Microsoft YaHei UI\";")
-        self.total_mass_R.setAlignment(Qt.AlignCenter)
+        self.total_mass_R.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.total_mass_R.setWordWrap(True)
 
         self.verticalLayout_6.addWidget(self.groupBox_7)
@@ -1199,7 +1221,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_4.addLayout(self.verticalLayout_6)
 
-        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        self.verticalSpacer_3 = QSpacerItem(20, 40, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Expanding)
 
         self.verticalLayout_4.addItem(self.verticalSpacer_3)
 
@@ -1212,13 +1234,13 @@ class Ui_MainWindow(object):
         self.groupBox_5.setSizePolicy(sizePolicy3)
         self.groupBox_5.setMinimumSize(QSize(0, 200))
         self.groupBox_5.setStyleSheet(u"color: rgb(151, 190, 21);\n"
-"font: 16pt \"Microsoft YaHei UI\";")
+"font: 14pt \"Microsoft YaHei UI\";")
         self.warming_info = QLabel(self.groupBox_5)
         self.warming_info.setObjectName(u"warming_info")
         self.warming_info.setGeometry(QRect(10, 40, 171, 151))
         self.warming_info.setStyleSheet(u"color: rgb(255, 255, 255);\n"
 "font: 16pt \"Microsoft YaHei UI\";")
-        self.warming_info.setAlignment(Qt.AlignCenter)
+        self.warming_info.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.warming_info.setWordWrap(True)
 
         self.verticalLayout_5.addWidget(self.groupBox_5)
@@ -1240,7 +1262,7 @@ class Ui_MainWindow(object):
 "color: rgb(151, 190, 21);")
         self.warming_alarm.setPixmap(QPixmap(u"font/\u7eff\u706f.png"))
         self.warming_alarm.setScaledContents(True)
-        self.warming_alarm.setAlignment(Qt.AlignCenter)
+        self.warming_alarm.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_9.addWidget(self.warming_alarm)
 
@@ -1249,7 +1271,7 @@ class Ui_MainWindow(object):
         self.label_15.setStyleSheet(u"background-color:transparent;\n"
 "font: 700 14pt \"Microsoft YaHei UI\";\n"
 "color: rgb(151, 190, 21);")
-        self.label_15.setAlignment(Qt.AlignCenter)
+        self.label_15.setAlignment(Qt.AlignmentFlag.AlignCenter)
 
         self.horizontalLayout_9.addWidget(self.label_15)
 
@@ -1268,7 +1290,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1277,6 +1299,7 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
         self.label.setText("")
+        self.config_2.setText("")
         self.config.setText("")
         self.home.setText("")
         self.exit.setText("")
