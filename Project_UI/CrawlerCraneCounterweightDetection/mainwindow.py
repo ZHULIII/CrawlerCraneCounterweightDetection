@@ -177,7 +177,7 @@ class MainWindow(QWidget):
         self.stream_path = int(self.stream_path) if str.isdigit(self.stream_path) else self.stream_path #获取本地相机代号
 
         #配重检测推理参数
-        # self.weight_path = str(self.ui.weight_file_list.currentText())
+        self.weight_path = str(self.ui.weight_file_list.currentText())
         self.imgsz = int(self.ui.imgsz.text())
         self.device = "CPU" if self.ui.CPU.isChecked() else "cuda:0"
         self.conf = self.ui.conf.value()*0.01
