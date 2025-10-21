@@ -1,10 +1,3 @@
-D:/视频/超起配重/超起配重.mp4
-D:/视频/超起配重/累加-加速.mp4
-0
-1
-D:/视频/超起配重/累加.avi
-192.168.1.1
-2
-D:/zoomlion/CrawlerCraneCounterweightDetection/video_data/ch2_20240307_163734.avi
-D:/视频/超起配重/ch3_20240308_093902.avi
-D:/视频/超起配重/ch3_20240308_091335.avi
+/mnt/s/NLP/Agent/Agent_Engineering/data/output113/camera_output113_20251015_161620.mp4
+/mnt/s/NLP/Agent/Agent_Engineering/data/output113/camera_output113_20251015_143619.mp4
+

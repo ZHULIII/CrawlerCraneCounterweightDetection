@@ -51,4 +51,13 @@ def knn_classifier(int_boxes):
 #     l = np.array(l)
 #     a, b = knn_classifier(l)
 #     print(a,b)
+from numba import jit
+def write_cache_to_log(log_dir, log_cache):
+    try:
+        with open(log_dir, 'a') as log_file:
+            for log_entry in log_cache:
+                log_file.write(log_entry + '\n')
+            log_cache = []  # 清空缓存
+    except IOError as e:
+        print(f"写入日志时发生错误：{e}")
 

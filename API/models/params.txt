@@ -1,0 +1,8 @@
+{
+    "yolo_image_size":640,
+    "yolo_conf":0.1,
+    "yolo_model_path":"best.pt",
+    "yolo_detection_log":"yolo_detection_log.txt",
+    "gauss_filter":"True",
+    "model_character_path":"best.onnx"
+}

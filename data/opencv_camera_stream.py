@@ -13,14 +13,14 @@ str_time = str_time.replace('-','') + '_video.avi'
 # out = cv2.VideoWriter('output4.mp4', fourcc, 20.0, (1280,720))
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-w, h = 1920,1080
+w, h = 1280,720
 out = cv2.VideoWriter(str_time, fourcc, 20.0, (w, h), True)
 
 
 # 海康相机的RTSP URL，需要替换为你相机的实际信息。
 # 这通常包含用户名、密码、IP地址以及流的访问路径。
 # 注意：下面的URL只是一个示例格式，你的相机RTSP URL可能有所不同，请参考相机文档获得正确的URL格式。
-rtsp_url = 'rtsp://admin:Password@192.168.1.65/Streaming/Channels/1'
+rtsp_url = 'rtsp://192.168.1.115:515/main_stream'
 
 # 使用OpenCV的VideoCapture方法来获取视频流
 cap = cv2.VideoCapture(rtsp_url)
@@ -41,6 +41,7 @@ while True:
     # 实时展示帧
     out.write(frame)
     cv2.imshow('frame', frame)
+    print(frame.shape)
 
     # 按'q'键退出循环
     if cv2.waitKey(1) == ord('q'):

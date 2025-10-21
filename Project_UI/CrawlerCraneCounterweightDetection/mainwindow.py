@@ -2,13 +2,16 @@
 # Important:
 # You need to run the following command to generate the ui_form.py file
 #     pyside6-uic form.ui -o ui_form.py
+
+# Sudo apt-get install libxkbcommon-x11-0
+# sudo apt install libegl1-mesa
 import sys
 from PySide6.QtWidgets import QApplication, QWidget,QFileDialog,QButtonGroup
-from PySide6.QtCore import QDir,Qt
 from PySide6.QtGui import QPixmap
 from ui_form import Ui_MainWindow
 from Stream_Inference import Stream_Inference
 import os
+from datetime import datetime
 
 class MainWindow(QWidget):
     def __init__(self, parent=None):
@@ -22,6 +25,9 @@ class MainWindow(QWidget):
         self.PageSwitchButtonGroup.addButton(self.ui.home)
         self.PageSwitchButtonGroup.addButton(self.ui.config)
         self.PageSwitchButtonGroup.buttonClicked.connect(self.page_switch)
+
+        # 添加日志文本地址
+        self.log_dir = "logs/" + datetime.now().strftime("%Y_%m_%d") + '.txt'
 
         #流、权重文件浏览
         self.stream_path=""
@@ -43,14 +49,14 @@ class MainWindow(QWidget):
         self.stream_inference_thread=""
 
         #默认配重检测推理参数
-        self.weight_path="../../utils/best.pt"
+        self.weight_path="../../utils/models/best.pt"
         self.imgsz=640
-        self.conf=0.5
+        self.conf=0.1
         self.device="cuda:0"
 
         #默认字符检测推理参数
         self.weight_sr = "../../utils/ESPCN_x2.pb"
-        self.weight_character = "../../CounterweightCharacterRecognition/detect/train/weights/best.engine"
+        self.weight_character = "../../CounterweightCharacterRecognition/detect/train/weights/best.pt"
         self.imgsz_2=640
         self.conf_2=0.5
         self.device_2="cuda:0"
@@ -171,12 +177,12 @@ class MainWindow(QWidget):
         self.stream_path = int(self.stream_path) if str.isdigit(self.stream_path) else self.stream_path #获取本地相机代号
 
         #配重检测推理参数
-        self.weight_path = str(self.ui.weight_file_list.currentText())
+        # self.weight_path = str(self.ui.weight_file_list.currentText())
         self.imgsz = int(self.ui.imgsz.text())
         self.device = "CPU" if self.ui.CPU.isChecked() else "cuda:0"
         self.conf = self.ui.conf.value()*0.01
         #字符检测推理参数
-        self.weight_character = str(self.ui.weight_file_list_2.currentText())
+        # self.weight_character = str(self.ui.weight_file_list_2.currentText())
         self.imgsz_2= int(self.ui.imgsz_2.text())
         self.device_2 = "CPU" if self.ui.CPU_2.isChecked() else "cuda:0"
         self.conf_2 = self.ui.conf_2.value()*0.01
@@ -208,9 +214,9 @@ class MainWindow(QWidget):
 
     def display_results(self,num_weight,total_mass,total_mass_L,total_mass_R,warming_info):
         self.ui.num_weight.setText(str(num_weight))
-        self.ui.total_mass.setText(str(total_mass))
-        self.ui.total_mass_L.setText(str(total_mass_L))
-        self.ui.total_mass_R.setText(str(total_mass_R))
+        self.ui.total_mass.setText(str(int(total_mass)))
+        self.ui.total_mass_L.setText(str(int(total_mass_L)))
+        self.ui.total_mass_R.setText(str(int(total_mass_R)))
         self.ui.warming_info.setText(warming_info)
 
 if __name__ == "__main__":

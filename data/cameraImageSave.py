@@ -12,7 +12,7 @@ str_time = str_time.replace('-','') + 'testwrite.avi'
 # out = cv2.VideoWriter('output4.mp4', fourcc, 20.0, (1280,720))
 
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-w, h = 1280, 720
+w, h = 1920,1080
 out = cv2.VideoWriter(str_time, fourcc, 20.0, (w, h), True)
 
 # 接入相机（0是第一个相机，如果有多个相机，可以尝试1, 2, ...）s
@@ -28,7 +28,7 @@ while(cap.isOpened()):
 
         # 显示帧
         cv2.imshow('frame', frame)
-
+        print('',frame.shape)
         # 按'q'退出循环
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
