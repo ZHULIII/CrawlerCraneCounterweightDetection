@@ -65,6 +65,8 @@ class MainWindow(QWidget):
         self.ui.conf.valueChanged.connect(lambda:self.sliderChanged(self.ui.conf.value(),0))
         self.ui.conf_2.valueChanged.connect(lambda:self.sliderChanged(self.ui.conf_2.value(),1))
 
+        #设定重量值
+        self.ui.num_weight_set.setPlaceholderText("请输入设定配重重量...")
         # 从文件中加载历史数据
         self.load_stream_path()
         self.ui.stream_file_list.currentIndexChanged.connect(self.save_stream_path)
@@ -75,6 +77,9 @@ class MainWindow(QWidget):
         self.button_mode_switch(self.ui.weight_file_list.currentText(),self.deviceButtonGroup)
         self.button_mode_switch(self.ui.weight_file_list_2.currentText(),self.deviceButtonGroup_2)
         self.stream_import()
+
+        #警报状态
+        self.warming_alarm_mode=0 #0-安全，1-危险 
 
     def save_stream_path(self):
         # 断开 currentIndexChanged 信号的连接
@@ -217,7 +222,27 @@ class MainWindow(QWidget):
         self.ui.total_mass.setText(str(int(total_mass)))
         self.ui.total_mass_L.setText(str(int(total_mass_L)))
         self.ui.total_mass_R.setText(str(int(total_mass_R)))
+
+        """获取输入框内容"""
+        text = self.ui.num_weight_set.text()
+        if int(total_mass)!=int(text):
+            warming_info = "注意！ 当前超起配重未达到设定配重量"
+            self.current = 1
+            self.switch_warming_alarm_mode()
+        else:
+            self.current = 0
+            self.switch_warming_alarm_mode()
+
         self.ui.warming_info.setText(warming_info)
+
+    def switch_warming_alarm_mode(self):
+        """切换警示灯显示的图片"""
+        if self.current == 0:
+            self.ui.warming_alarm.setPixmap(QPixmap("./font/绿灯.png"))
+            self.current = 1
+        else:
+            self.ui.warming_alarm.setPixmap(QPixmap("./font/红灯.png"))
+            self.current = 0
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

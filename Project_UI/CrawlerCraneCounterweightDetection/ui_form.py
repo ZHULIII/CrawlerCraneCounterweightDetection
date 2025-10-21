@@ -1344,10 +1344,11 @@ class Ui_MainWindow(object):
         self.groupBox_2.setTitle(QCoreApplication.translate("MainWindow", u"\u89c6\u9891\u6d41\u5bfc\u5165", None))
         self.groupBox_4.setTitle(QCoreApplication.translate("MainWindow", u"\u914d\u91cd\u68c0\u6d4b\u63a8\u7406\u53c2\u6570\u8bbe\u7f6e", None))
         self.label_2.setText(QCoreApplication.translate("MainWindow", u"\u6a21\u578b\u6743\u91cd\u6587\u4ef6", None))
-        self.weight_file_list.setItemText(0, QCoreApplication.translate("MainWindow", u"../../utils/best_FP16.engine", None))
+        self.weight_file_list.setItemText(0, QCoreApplication.translate("MainWindow", u"../../utils/models/best.pt", None))
         self.weight_file_list.setItemText(1, QCoreApplication.translate("MainWindow", u"D:\\Download\\best.pt", None))
         self.weight_file_list.setItemText(2, QCoreApplication.translate("MainWindow", u"../../utils/best.pt", None))
 
+        self.weight_file_list.setCurrentText(QCoreApplication.translate("MainWindow", u"../../utils/models/best.pt", None))
         self.label_6.setText(QCoreApplication.translate("MainWindow", u"\u63a8\u7406\u8bbe\u5907", None))
         self.GPU.setText(QCoreApplication.translate("MainWindow", u"GPU", None))
         self.CPU.setText(QCoreApplication.translate("MainWindow", u"CPU", None))

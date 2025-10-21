@@ -585,6 +585,9 @@ QComboBox QAbstractItemView::item:selected{
                       <property name="editable">
                        <bool>false</bool>
                       </property>
+                      <property name="currentText">
+                       <string>../../utils/models/best.pt</string>
+                      </property>
                       <property name="iconSize">
                        <size>
                         <width>30</width>
@@ -599,7 +602,7 @@ QComboBox QAbstractItemView::item:selected{
                       </property>
                       <item>
                        <property name="text">
-                        <string>../../utils/best_FP16.engine</string>
+                        <string>../../utils/models/best.pt</string>
                        </property>
                       </item>
                       <item>

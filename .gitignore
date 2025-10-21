@@ -27,4 +27,4 @@ test.py
 /output_frames
 /video_data
 Project_UI/CrawlerCraneCounterweightDetection/config/stream_path.txt
-utils/models
+utils/models/*
