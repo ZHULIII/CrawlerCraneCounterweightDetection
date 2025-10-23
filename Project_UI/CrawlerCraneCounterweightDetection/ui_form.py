@@ -15,11 +15,10 @@ from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
     QFont, QFontDatabase, QGradient, QIcon,
     QImage, QKeySequence, QLinearGradient, QPainter,
     QPalette, QPixmap, QRadialGradient, QTransform)
-from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QGridLayout,
-    QGroupBox, QHBoxLayout, QLabel, QLayout,
-    QLineEdit, QPushButton, QRadioButton, QSizePolicy,
-    QSlider, QSpacerItem, QStackedWidget, QVBoxLayout,
-    QWidget)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QComboBox, QGroupBox,
+    QHBoxLayout, QLabel, QLayout, QLineEdit,
+    QPushButton, QRadioButton, QSizePolicy, QSlider,
+    QSpacerItem, QStackedWidget, QVBoxLayout, QWidget)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -29,7 +28,7 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet(u"background-color: rgb(56, 57, 52);")
         self.verticalLayoutWidget = QWidget(MainWindow)
         self.verticalLayoutWidget.setObjectName(u"verticalLayoutWidget")
-        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 1271, 815))
+        self.verticalLayoutWidget.setGeometry(QRect(10, 10, 1271, 827))
         self.verticalLayout = QVBoxLayout(self.verticalLayoutWidget)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
@@ -40,10 +39,6 @@ class Ui_MainWindow(object):
         self.label.setPixmap(QPixmap(u"font/logo.png"))
 
         self.horizontalLayout.addWidget(self.label)
-
-        self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.horizontalLayout.addItem(self.horizontalSpacer)
 
         self.config_2 = QPushButton(self.verticalLayoutWidget)
         self.config_2.setObjectName(u"config_2")
@@ -279,7 +274,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_12.addWidget(self.label_2)
 
-        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_11 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_12.addItem(self.horizontalSpacer_11)
 
@@ -375,7 +370,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_13.addWidget(self.label_6)
 
-        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_8 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_13.addItem(self.horizontalSpacer_8)
 
@@ -438,7 +433,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_4 = QHBoxLayout()
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
-        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_10 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_4.addItem(self.horizontalSpacer_10)
 
@@ -500,7 +495,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_13.addLayout(self.horizontalLayout_4)
 
-        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_9 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_13.addItem(self.horizontalSpacer_9)
 
@@ -522,7 +517,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_14.addWidget(self.label_7)
 
-        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_6 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_14.addItem(self.horizontalSpacer_6)
 
@@ -539,7 +534,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_14.addWidget(self.imgsz)
 
-        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_7 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_14.addItem(self.horizontalSpacer_7)
 
@@ -616,7 +611,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_16.addWidget(self.label_9)
 
-        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_12 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_16.addItem(self.horizontalSpacer_12)
 
@@ -707,7 +702,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_17.addWidget(self.label_11)
 
-        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_13 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_17.addItem(self.horizontalSpacer_13)
 
@@ -770,7 +765,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_11 = QHBoxLayout()
         self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
-        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_14 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_11.addItem(self.horizontalSpacer_14)
 
@@ -832,7 +827,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_17.addWidget(self.CPU_2)
 
-        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_15 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_17.addItem(self.horizontalSpacer_15)
 
@@ -854,7 +849,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.label_13)
 
-        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_16 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_18.addItem(self.horizontalSpacer_16)
 
@@ -871,7 +866,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_18.addWidget(self.imgsz_2)
 
-        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_17 = QSpacerItem(40, 20, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
         self.horizontalLayout_18.addItem(self.horizontalSpacer_17)
 
@@ -977,19 +972,17 @@ class Ui_MainWindow(object):
 "	border-radius:10px;\n"
 "	border:2px solid gray;\n"
 "}")
-        self.verticalLayoutWidget_3 = QWidget(self.groupBox_3)
-        self.verticalLayoutWidget_3.setObjectName(u"verticalLayoutWidget_3")
-        self.verticalLayoutWidget_3.setGeometry(QRect(9, 19, 981, 662))
-        self.verticalLayout_3 = QVBoxLayout(self.verticalLayoutWidget_3)
+        self.verticalLayout_6 = QVBoxLayout(self.groupBox_3)
+        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
+        self.verticalLayout_3 = QVBoxLayout()
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
-        self.verticalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.gridLayout = QGridLayout()
-        self.gridLayout.setObjectName(u"gridLayout")
-        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.verticalLayout_9 = QVBoxLayout()
+        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
+        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout.addItem(self.horizontalSpacer_2, 1, 0, 1, 1)
+        self.verticalLayout_9.addItem(self.verticalSpacer)
 
-        self.annotated_image = QLabel(self.verticalLayoutWidget_3)
+        self.annotated_image = QLabel(self.groupBox_3)
         self.annotated_image.setObjectName(u"annotated_image")
         sizePolicy2.setHeightForWidth(self.annotated_image.sizePolicy().hasHeightForWidth())
         self.annotated_image.setSizePolicy(sizePolicy2)
@@ -997,31 +990,23 @@ class Ui_MainWindow(object):
         self.annotated_image.setStyleSheet(u"color: rgb(115, 115, 115);\n"
 "font: 700 14pt \"Microsoft YaHei UI\";")
 
-        self.gridLayout.addWidget(self.annotated_image, 1, 1, 1, 1)
+        self.verticalLayout_9.addWidget(self.annotated_image)
 
-        self.horizontalSpacer_3 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Expanding)
 
-        self.gridLayout.addItem(self.horizontalSpacer_3, 1, 2, 1, 1)
-
-        self.verticalSpacer = QSpacerItem(20, 40, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.verticalSpacer, 0, 1, 1, 1)
-
-        self.verticalSpacer_2 = QSpacerItem(20, 40, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.gridLayout.addItem(self.verticalSpacer_2, 2, 1, 1, 1)
+        self.verticalLayout_9.addItem(self.verticalSpacer_2)
 
 
-        self.verticalLayout_3.addLayout(self.gridLayout)
+        self.verticalLayout_3.addLayout(self.verticalLayout_9)
 
         self.horizontalLayout_3 = QHBoxLayout()
         self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
         self.horizontalLayout_3.setContentsMargins(-1, -1, 10, -1)
-        self.horizontalSpacer_4 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+        self.horizontalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
         self.horizontalLayout_3.addItem(self.horizontalSpacer_4)
 
-        self.box = QCheckBox(self.verticalLayoutWidget_3)
+        self.box = QCheckBox(self.groupBox_3)
         self.box.setObjectName(u"box")
         self.box.setStyleSheet(u"QCheckBox {\n"
 "color: white; \n"
@@ -1046,7 +1031,7 @@ class Ui_MainWindow(object):
 
         self.horizontalLayout_3.addWidget(self.box)
 
-        self.Label = QCheckBox(self.verticalLayoutWidget_3)
+        self.Label = QCheckBox(self.groupBox_3)
         self.Label.setObjectName(u"Label")
         self.Label.setStyleSheet(u"QCheckBox {\n"
 "color: white; \n"
@@ -1073,13 +1058,16 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_3.addLayout(self.horizontalLayout_3)
 
+
+        self.verticalLayout_6.addLayout(self.verticalLayout_3)
+
         self.stackedWidget.addWidget(self.page_6)
 
         self.horizontalLayout_2.addWidget(self.stackedWidget)
 
         self.verticalLayout_2 = QVBoxLayout()
         self.verticalLayout_2.setObjectName(u"verticalLayout_2")
-        self.verticalLayout_2.setContentsMargins(-1, 9, -1, -1)
+        self.verticalLayout_2.setContentsMargins(-1, 0, -1, 6)
         self.groupBox_10 = QGroupBox(self.verticalLayoutWidget)
         self.groupBox_10.setObjectName(u"groupBox_10")
         sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
@@ -1123,7 +1111,7 @@ class Ui_MainWindow(object):
 
         self.verticalLayout_2.addWidget(self.groupBox_10)
 
-        self.verticalSpacer_4 = QSpacerItem(20, 40, QSizePolicy.Minimum, QSizePolicy.Fixed)
+        self.verticalSpacer_4 = QSpacerItem(20, 300, QSizePolicy.Minimum, QSizePolicy.Fixed)
 
         self.verticalLayout_2.addItem(self.verticalSpacer_4)
 
@@ -1139,7 +1127,7 @@ class Ui_MainWindow(object):
 "}")
         self.verticalLayout_16 = QVBoxLayout(self.groupBox)
         self.verticalLayout_16.setObjectName(u"verticalLayout_16")
-        self.verticalLayout_16.setContentsMargins(0, 15, 0, -1)
+        self.verticalLayout_16.setContentsMargins(0, 15, 0, 6)
         self.verticalLayout_4 = QVBoxLayout()
         self.verticalLayout_4.setObjectName(u"verticalLayout_4")
         self.verticalLayout_4.setContentsMargins(0, -1, -1, -1)
@@ -1197,65 +1185,6 @@ class Ui_MainWindow(object):
 
 
         self.verticalLayout_4.addLayout(self.verticalLayout_10)
-
-        self.verticalLayout_9 = QVBoxLayout()
-        self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.verticalLayout_9.setContentsMargins(10, -1, 10, 10)
-        self.groupBox_8 = QGroupBox(self.groupBox)
-        self.groupBox_8.setObjectName(u"groupBox_8")
-        sizePolicy4.setHeightForWidth(self.groupBox_8.sizePolicy().hasHeightForWidth())
-        self.groupBox_8.setSizePolicy(sizePolicy4)
-        self.groupBox_8.setMinimumSize(QSize(0, 60))
-        self.groupBox_8.setStyleSheet(u"color: rgb(151, 190, 21);\n"
-"font: 12pt \"Microsoft YaHei UI\";")
-        self.verticalLayout_17 = QVBoxLayout(self.groupBox_8)
-        self.verticalLayout_17.setObjectName(u"verticalLayout_17")
-        self.verticalLayout_17.setContentsMargins(-1, 15, -1, -1)
-        self.total_mass_L = QLabel(self.groupBox_8)
-        self.total_mass_L.setObjectName(u"total_mass_L")
-        self.total_mass_L.setStyleSheet(u"color: rgb(255, 255, 255);\n"
-"font: 16pt \"Microsoft YaHei UI\";")
-        self.total_mass_L.setWordWrap(True)
-
-        self.verticalLayout_17.addWidget(self.total_mass_L)
-
-
-        self.verticalLayout_9.addWidget(self.groupBox_8)
-
-
-        self.verticalLayout_4.addLayout(self.verticalLayout_9)
-
-        self.verticalLayout_6 = QVBoxLayout()
-        self.verticalLayout_6.setSpacing(0)
-        self.verticalLayout_6.setObjectName(u"verticalLayout_6")
-        self.verticalLayout_6.setContentsMargins(10, -1, 10, 0)
-        self.groupBox_7 = QGroupBox(self.groupBox)
-        self.groupBox_7.setObjectName(u"groupBox_7")
-        sizePolicy4.setHeightForWidth(self.groupBox_7.sizePolicy().hasHeightForWidth())
-        self.groupBox_7.setSizePolicy(sizePolicy4)
-        self.groupBox_7.setMinimumSize(QSize(0, 60))
-        self.groupBox_7.setStyleSheet(u"color: rgb(151, 190, 21);\n"
-"font: 12pt \"Microsoft YaHei UI\";")
-        self.verticalLayout_11 = QVBoxLayout(self.groupBox_7)
-        self.verticalLayout_11.setObjectName(u"verticalLayout_11")
-        self.verticalLayout_11.setContentsMargins(-1, 15, -1, -1)
-        self.total_mass_R = QLabel(self.groupBox_7)
-        self.total_mass_R.setObjectName(u"total_mass_R")
-        self.total_mass_R.setStyleSheet(u"color: rgb(255, 255, 255);\n"
-"font: 16pt \"Microsoft YaHei UI\";")
-        self.total_mass_R.setWordWrap(True)
-
-        self.verticalLayout_11.addWidget(self.total_mass_R)
-
-
-        self.verticalLayout_6.addWidget(self.groupBox_7)
-
-
-        self.verticalLayout_4.addLayout(self.verticalLayout_6)
-
-        self.verticalSpacer_3 = QSpacerItem(20, 100, QSizePolicy.Expanding, QSizePolicy.Minimum)
-
-        self.verticalLayout_4.addItem(self.verticalSpacer_3)
 
         self.verticalLayout_5 = QVBoxLayout()
         self.verticalLayout_5.setObjectName(u"verticalLayout_5")
@@ -1328,7 +1257,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
 
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
@@ -1379,10 +1308,6 @@ class Ui_MainWindow(object):
         self.num_weight.setText("")
         self.groupBox_9.setTitle(QCoreApplication.translate("MainWindow", u"\u914d\u91cd\u603b\u91cd\u91cf(t)", None))
         self.total_mass.setText("")
-        self.groupBox_8.setTitle(QCoreApplication.translate("MainWindow", u"\u5de6\u4fa7\u603b\u91cd\u91cf(t)", None))
-        self.total_mass_L.setText("")
-        self.groupBox_7.setTitle(QCoreApplication.translate("MainWindow", u"\u53f3\u4fa7\u603b\u91cd\u91cf(t)", None))
-        self.total_mass_R.setText("")
         self.groupBox_5.setTitle(QCoreApplication.translate("MainWindow", u"\u9884\u8b66\u4fe1\u606f", None))
         self.warming_info.setText("")
         self.warming_alarm.setText("")

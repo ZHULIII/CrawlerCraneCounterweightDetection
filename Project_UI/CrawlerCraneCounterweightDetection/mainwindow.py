@@ -220,8 +220,8 @@ class MainWindow(QWidget):
     def display_results(self,num_weight,total_mass,total_mass_L,total_mass_R,warming_info):
         self.ui.num_weight.setText(str(num_weight))
         self.ui.total_mass.setText(str(int(total_mass)))
-        self.ui.total_mass_L.setText(str(int(total_mass_L)))
-        self.ui.total_mass_R.setText(str(int(total_mass_R)))
+        # self.ui.total_mass_L.setText(str(int(total_mass_L)))
+        # self.ui.total_mass_R.setText(str(int(total_mass_R)))
 
         """获取输入框内容"""
         text = self.ui.num_weight_set.text()
