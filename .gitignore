@@ -16,3 +16,6 @@ test.py
 *.txt
 *.onnx
 *.pt
+*.png
+*.jpg
+data/datasets/*
