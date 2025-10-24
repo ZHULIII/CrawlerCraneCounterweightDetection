@@ -19,3 +19,4 @@ test.py
 *.png
 *.jpg
 data/datasets/*
+*.engine
